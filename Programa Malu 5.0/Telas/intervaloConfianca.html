@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intervalo de Confiança</title>
+    <script>
+        function abrir(URL) {
+            window.open(URL, "", "top=40, left=40, width=800, height=500,scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no" );
+        }
+        function potencia(base, exp){
+				
+				if(exp == 0){
+					return 1;
+				}
+				else if(exp == 1){
+					return base;
+				}
+				else{
+					return base * potencia(base, exp - 1);
+				}
+			}
+        
+        var elementos = new Array();
+
+        function executarFuncoes(){
+
+            var ep;
+            var alpha = document.getElementById('alpha').value;
+            
+
+
+            ep = parseFloat((alpha / 100) / 2);
+            document.getElementById('ep').setAttribute("value", ep);
+            
+            
+
+
+        }
+        function executarCerteza(){
+
+            var numElementos = document.getElementById('numElementos').value; 
+            var media = document.getElementById('media').value;
+            var desvioPadrao = document.getElementById('desvioPadrao').value;
+            var valorTabela = document.getElementById('valorTabela').value;
+            var variancia, certeza, valoresPossiveis1, valoresPossiveis2;
+
+            variancia = parseFloat(desvioPadrao / Math.sqrt(numElementos));
+            document.getElementById('variancia').setAttribute("value", variancia);
+
+            certeza = parseFloat(valorTabela * variancia);
+            document.getElementById('certeza').setAttribute("value", certeza);
+
+            valoresPossiveis1 = parseFloat(parseFloat(media) - certeza);
+            document.getElementById('valoresPossiveis1').setAttribute("value", valoresPossiveis1);
+            valoresPossiveis2 = parseFloat(parseFloat(media) + certeza);
+            document.getElementById('valoresPossiveis2').setAttribute("value", valoresPossiveis2);
+
+        }
+    </script>
+</head>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid black;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+    figcaption{
+        font-family: Calibri;
+    }
+    .recolherDados{
+        width:650px;
+        height:25px;
+        text-align: center;
+    }
+    button{
+        border-radius: 5px;
+        height: 30px;
+    }
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Intervalo de Confiança</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="javascript:abrir('explicacaoIntervaloConfianca.html');">Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <button onclick="window.open('tabelaDistribuicao.html','Tabela Distribuição','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1000,height=1000'); ">Consultar Tabela</button>
+                <br></br>
+                <table width=100% >
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>N</figcaption>
+                            <input type="text" id="numElementos" style="text-align:center;" >
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Media</figcaption>
+                            <input type="text" id="media" style="text-align:center;" >
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Desvio Padrão (DP)</figcaption>
+                            <input type="text" id="desvioPadrao" style="text-align:center;" >
+                        </td>
+                    </tr>
+				</table>
+                    <center>
+                    <table width=100% >
+                        <tr>
+                            <td>
+                                <center>
+                                <figcaption>1 - Alfa</figcaption>
+                                <input type="text" id="alpha" style="text-align:center;" >
+                            </td>
+                            <td>
+                                <center>
+                                <figcaption>Erro Padrão</figcaption>
+                                <input type="text" id="ep" style="text-align: center;" readonly>
+                            </td>
+                        </tr>
+                    </table>
+                <br></br>
+                <input type="button" value="Calcular" onclick="executarFuncoes()">
+            </center>
+            <center>
+                <br></br>
+                <table width=100% >
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Valor referente à tabela (uso contrário)</figcaption>
+                            <input type="text" id="valorTabela" style="text-align:center;">
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Variância</figcaption>
+                            <input type="text" id="variancia" style="text-align:center;" readonly>
+                        </td>
+                    </tr>
+				</table>
+            <br></br>
+            <center>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <center>
+                        <figcaption>Certeza</figcaption>
+                        <input type="text" id="certeza" style="text-align:center;" readonly>
+                    </td>
+                    <td>
+                        <center>
+                        <figcaption>Variação 1</figcaption>
+                        <input type="text" id="valoresPossiveis1" style="text-align:center;" readonly>
+                    </td>
+                    <td>
+                        <center>
+                        <figcaption>Variação 2</figcaption>
+                        <input type="text" id="valoresPossiveis2" style="text-align:center;" readonly>
+                    </td>
+                </tr>
+            </table>
+                <br></br>
+                <input type="button" value="Calcular" onclick="executarCerteza()">
+			<center>
+			<div class="limpar">
+                    <center>
+                    <h2><a href>Limpar</a></h2>
+            </div>
+        </div>
+        
+    </body>
+</html>

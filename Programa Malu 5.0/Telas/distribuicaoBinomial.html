@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Distribuição Binomial</title>
+    <script>
+        function abrir(URL) {
+            window.open(URL, "", "top=40, left=40, width=800, height=500,scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no" );
+        }
+        function fact(x) {
+            if(x==0) {
+                return 1;
+            }
+            return x * fact(x-1);
+        }
+        function distribuicaoBinomial(){
+
+            var tamAmostra = parseFloat(document.getElementById('tamAmostra').value);
+            var evento = parseFloat(document.getElementById('evento').value);
+            var sucesso = parseFloat(document.getElementById('sucesso').value);
+            var fracasso = parseFloat(document.getElementById('fracasso').value);
+            var radios = document.getElementsByName('opcao2');
+            var probabilidade = 0;
+            var probabilidadeTotal = 0;
+            var media = 0;
+            var variancia = 0;
+            var desvioPadrao = 0;
+            var cv = 0;
+            var soma = 0, i = 0, j = 0;
+            var fatorial = 1;
+
+            media = tamAmostra * sucesso;
+            document.getElementById('media').setAttribute("value", media);
+            desvioPadrao = Math.sqrt(tamAmostra * sucesso * fracasso);
+            document.getElementById('desvioPadrao').setAttribute("value", desvioPadrao);
+            cv = (desvioPadrao / media) * 100;
+            document.getElementById('cv').setAttribute("value", cv);
+            variancia = tamAmostra * sucesso * fracasso;
+            document.getElementById('variancia').setAttribute("value", variancia);
+
+
+
+            if(radios[1].checked){
+                if(evento == 0){
+                    probabilidade = ((sucesso / sucesso) * Math.pow(fracasso, (tamAmostra - evento)));
+                    document.getElementById('probabilidade').setAttribute("value", probabilidade);
+                }
+                else{
+                    for(i = tamAmostra; i > evento; i--){
+                        fatorial *= i;
+                    }
+                    probabilidade = ((fatorial / fact(tamAmostra - evento)) * Math.pow(sucesso, evento) * Math.pow(fracasso, (tamAmostra - evento)));
+                    document.getElementById('probabilidade').setAttribute("value", probabilidade * 100 + "%");
+                }
+            }
+            /*if(radios[0].checked){
+                for(i = evento; i <= tamAmostra; i++){
+                    if(evento == 0){
+                        probabilidade = ((sucesso / sucesso) * Math.pow(fracasso, (tamAmostra - evento)));
+                        soma += probabilidade;
+                    }
+                    else{
+                        for(i = tamAmostra; i > evento; i--){
+                            fatorial *= i;
+                        }
+                        probabilidade = ((fatorial / fact(tamAmostra - evento)) * Math.pow(sucesso, evento) * Math.pow(fracasso, (tamAmostra - evento)));
+                        soma += probabilidade;
+                    }
+                }
+                document.getElementById('probabilidade').setAttribute("value", soma + "%");
+            }*/
+            /*if(radios[2].checked){
+                for(i = 0; i <= evento; i++){
+                    if(i == 0){
+                        probabilidade = ((sucesso / sucesso) * Math.pow(fracasso, (tamAmostra - evento)));
+                        soma += probabilidade;
+                    }
+                    else{
+                        for(i = tamAmostra; i > evento; i--){
+                            fatorial *= i;
+                        }
+                        probabilidade = ((fatorial / fact(tamAmostra - evento)) * Math.pow(sucesso, evento) * Math.pow(fracasso, (tamAmostra - evento)));
+                        soma += probabilidade;
+                    }
+                }
+                document.getElementById('probabilidade').setAttribute("value", soma);
+            }*/
+
+
+        }
+    </script>
+</head>
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+    figcaption{
+        font-family: Calibri;
+        padding-top: 5px;
+    }
+
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Distribuição Binomial</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href>Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <h2 style="font-family: Calibri;">Parametrização</h2>
+                <br></br>
+            <center>
+                <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Tamanho Amostra (N)</figcaption>
+                            <input type="text" id="tamAmostra" style="text-align:center;">
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Sucesso (P)</figcaption>
+                            <input type="text" id="sucesso" style="text-align:center;">
+                    </tr>
+                    <tr>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Fracasso (Q)</figcaption>
+                            <input type="text" id="fracasso" style="text-align:center;">
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Evento (K)</figcaption>
+                            <input type="text" id="evento" style="text-align:center;">
+                        </td>
+                    </tr>
+            <center>
+            <form action="">
+            <table style="padding-top: 10px;" width="70%">      
+                <tr>
+                    <td>
+                        <center>   
+                        <figcaption>No minimo</figcaption>
+                        <input type="radio" name="opcao2" value="0">
+                    </td>
+                    <td>
+                        <center>
+                        <figcaption>Exatamente</figcaption>
+                        <input type="radio" name="opcao2" value="1">
+                    </td>
+                    <td>
+                        <center>
+                        <figcaption>No máximo</figcaption>
+                        <input type="radio" name="opcao2" value="2">
+                    </td>
+                </tr>
+            </table>
+            <center>
+            <input type="button" value="Calcular" onclick="distribuicaoBinomial()">
+            </form>
+            <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Variancia</figcaption>
+                            <input type="text" id="variancia" style="text-align: center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>CV</figcaption>
+                            <input type="text" id="cv" style="text-align: center;" readonly>
+                        </td>
+                    </tr>
+            </table>
+            <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Probabilidade Total</figcaption>
+                            <input type="text" id="probabilidade" style="text-align: center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Media</figcaption>
+                            <input type="text" id="media" style="text-align: center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Desvio Padrão</figcaption>
+                            <input type="text" id="desvioPadrao" style="text-align: center;" readonly>
+                        </td>
+                    </tr>
+            </table>
+            
+        </div>
+        
+    </body>
+</html>

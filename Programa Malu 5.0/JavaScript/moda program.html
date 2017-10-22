@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<script>
+			function moda(){
+				
+				var	modarray = new Array();
+				var elementos = new Array();
+				var i = -1, j, tam, maior = -1000000, k = 0;
+				
+				while(modarray[i] != -1){
+					i++;
+					modarray[i] = parseInt(prompt("Digite um número (digite -1 para sair)"));
+
+				}
+				
+				modarray.pop();
+				
+				
+				for(i = 0; i < modarray.length; i++){
+					k = 0;
+					for(j = i + 1; j < modarray.length; j++){
+						if(modarray[i] == modarray[j]){
+							k++;
+						}
+					}
+					if(maior == k){
+						alert("Sem moda (aqui começa a dar um bug de repeticao que eu enviei sem concertar clica em 'Impedir dialogos adicionais')");
+						break;
+					}
+					if(maior < k){
+						maior = k;
+						tam = i;
+						
+					}
+
+					
+				}
+				
+				if(maior != k){
+					alert("Moda: " + modarray[tam]);
+				}
+
+				
+
+				
+				
+			}
+		</script>
+		<body onload="moda()">
+		</body>
+	</head>
+</html>
+
+		
+		

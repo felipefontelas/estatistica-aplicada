@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Template Bootstrap</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+    <script>
+      function crescente(a, b){
+        return a - b;
+      }
+      function coletaDados(){
+
+        var tamPopulacao, i;
+        var populacao = new Array()
+
+        tamPopulacao = prompt("Digite o tamanho da populaçao");
+
+        for(i = 0; i < tamPopulacao; i++){
+          populacao[i] = prompt("Valores da população");
+        }
+
+        document.write(populacao.sort(crescente));
+
+
+      }
+    </script>
+</head>
+<body>
+<button type="submit" class="btn btn-default" onclick="coletaDados()">Submit</button>
+
+  <!-- jQuery (necessario para os plugins Javascript do Bootstrap) -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html

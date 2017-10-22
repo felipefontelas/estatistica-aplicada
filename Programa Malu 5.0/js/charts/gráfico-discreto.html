@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+<title>Chart JS - Gráficos em JavaScript com legendas</title>
+<link href="css/demo.css" rel="stylesheet" type="text/css">
+<script src="vendor/Chart.js"></script>
+<script src="src/legend.js"></script>
+<script src="src/quantitativa-discreta.js"></script>
+<script>
+if(!!(window.addEventListener)) window.addEventListener('DOMContentLoaded', main);
+else window.attachEvent('onload', main);
+
+function main() {
+
+    QuantitativaDiscreta();
+
+}
+
+
+function QuantitativaDiscreta() {
+	var loco
+	var sozinho = document.getElementById
+	var FamiliaP= 20
+	var FamiliaC = 25
+	var conjugue = 15
+	var republica = 31
+	var outros = 19
+    var grafico = {
+        labels : ["um","d0s","tres","aqueqw","pau no cu do paulo","loco"],
+        datasets : [
+            {
+            fillColor : "rgba(33,94,33,0.5)",
+            strokeColor : "rgba(33,94,33,1)",
+            pointColor : "rgba(33,94,33,1)",
+            pointStrokeColor : "#fff",
+            data : [sozinho,FamiliaP,FamiliaC,conjugue,republica,outros],
+            label : 'Valores dos dados da Tabela'
+        },
+        ]
+    };
+
+    var ctx = document.getElementById("grafico-discreto").getContext("2d");
+    new Chart(ctx).Bar(grafico);
+
+    legend(document.getElementById("grafico-discreto-legenda"), grafico);
+}
+</script>
+</head>
+<center>
+<body>
+<h2>Gráficos da ultima Tabela Discreta</h2>
+<hr>
+<div>
+    <canvas id="grafico-discreto" width="700" height="400"></canvas>
+    <div id="grafico-discreto-legenda"></div>
+</div>
+
+</body>
+</html>

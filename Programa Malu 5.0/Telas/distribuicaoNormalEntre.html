@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Distribuição Normal (caso Entre)</title>
+    <script>
+        function abrir(URL) {
+            window.open(URL, "", "top=40, left=40, width=800, height=500,scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no" );
+        }
+
+        function distribuicaoNormalpart1(){
+
+            var desvioPadrao = document.getElementById('desvioPadrao').value;
+            var media = document.getElementById('media').value;
+            var numX1 = document.getElementById('numX1').value;
+            var numX2 = document.getElementById('numX2').value;
+            var z1, z2;
+
+
+
+            z1 = parseFloat((numX1 - media) / desvioPadrao);
+            document.getElementById('z1').setAttribute("value", z1);
+            z2 = parseFloat((numX2 - media) / desvioPadrao);
+            document.getElementById('z2').setAttribute("value", z2);
+
+        }
+        function distribuicaoNormalpart2(){
+            
+
+            var valorTabela1 = parseFloat(document.getElementById('valorTabela1').value);
+            var valorTabela2 = parseFloat(document.getElementById('valorTabela2').value);
+            var probabilidade;
+            var radios = document.getElementsByName('opcao');
+
+            if(radios[0].checked){
+                probabilidade = (valorTabela1 - valorTabela2) * 100 + "%";
+                document.getElementById('probabilidade').setAttribute("value", probabilidade);
+            }
+            else if(radios[1].checked){
+                probabilidade = (valorTabela1 + valorTabela2) * 100 + "%";
+                document.getElementById('probabilidade').setAttribute("value", probabilidade);
+            }
+
+
+
+        }
+    </script>
+</head>
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    /*img:hover{
+        height: 150px;
+        width: 150px;
+    }*/
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+    figcaption{
+        font-family: Calibri;
+        padding-top: 10px;
+    }
+    button{
+        border-radius: 5px;
+        height: 30px;
+    }
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Distribuição Normal (caso Entre)</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href>Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <h2 style="font-family: Calibri;">Parametrização</h2>
+                <button onclick="window.open('tabelaDistribuicao.html','Tabela Distribuição','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1000,height=1000'); ">Consultar Tabela</button>
+                <br></br>
+            <center>
+                <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Desvio Padrão</figcaption>
+                            <input type="text" id="desvioPadrao" style="text-align: center;" >
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Media Ponderada</figcaption>
+                            <input type="text" id="media" style="text-align:center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>X1</figcaption>
+                            <input type="text" id="numX1" style="text-align:center;">
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>X2</figcaption>
+                            <input type="text" id="numX2" style="text-align:center;">
+                        </td>
+                    </tr>
+                </table>
+                <center>
+                <br></br>
+                <input type="button" value="Calcular" onclick="distribuicaoNormalpart1()">
+                <center>
+                <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Z1</figcaption>
+                            <input type="text" id="z1" style="text-align:center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Z2</figcaption>
+                            <input type="text" id="z2" style="text-align:center;" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Primeiro valor referente à tabela</figcaption>
+                            <center>
+                            <input type="text" id="valorTabela1" style="text-align:center;">
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Segundo valor referente à tabela</figcaption>
+                            <center>
+                            <input type="text" id="valorTabela2" style="text-align:center;">
+                        </td>
+                    </tr>
+                </table>
+            <center>
+            <table width=50% >
+                <tr>
+                    <td>
+                        <center>
+                        <figcaption>Subtrair os valores</figcaption>
+                        <input type="radio" name="opcao" value="0">
+                    </td>
+                    <td>
+                        <center>
+                        <figcaption>Somar os valores</figcaption>
+                        <input type="radio" name="opcao" value="1">
+                    </td>
+                </tr>
+            </table>
+            <center>
+            <br></br>
+            <input type="button" value="Calcular" onclick="distribuicaoNormalpart2()">
+                <figcaption>Probabilidade</figcaption>
+                <input type="text" id="probabilidade" style="text-align:center;" readonly>
+            <center>
+			        <div class="limpar">
+                        <center>
+                        <h2><a href>Limpar</a></h2>
+                    </div>
+        </div>
+        
+    </body>
+</html>

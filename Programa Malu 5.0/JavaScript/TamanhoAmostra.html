@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function TamanhoAmostra(){
+				
+				var erro = parseInt(document.getElementById("erro").value); 
+				var populacao = parseInt(document.getElementById("populacao").value);
+				
+
+				var tamAmostra = parseInt(1 / ((erro / 100) * (erro / 100)));
+				
+				var estimacao = parseInt((populacao * tamAmostra) / (populacao + tamAmostra) + 1);
+				
+				document.getElementById('estimacao').setAttribute("value", estimacao);
+				
+			}
+		</script>
+		<body>
+				<label>População</label>
+				<input type="number" id="populacao" value="">
+				<br>
+				</br>
+				<label>Erro.........</label>
+				<input type="number" id="erro" value="">
+				<input TYPE="button" NAME="calc" value="Calcular" onclick="TamanhoAmostra()" >
+				<br>
+				</br>
+				<label>Resultado</label>
+				<input type="text" id="estimacao" readonly>
+		</body>
+		
+		
+		
+	</head>
+</html>
+

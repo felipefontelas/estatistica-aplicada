@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Estatística Aplicada</title>
+    <script>
+    </script>
+</head>
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+        color: black;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+
+
+    </style>
+    <body background="https://image.freepik.com/free-vector/white-cubes-pattern_1053-248.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Estatística Aplicada</h1>
+        <div class="desenvolvedores">
+            <h2><a href>Desenvolvedores</a></h2>
+        </div>
+        <div class="opcoes">
+            <center>
+                <table width=80%>
+                    <tr>
+                        <td>
+                            <center>
+                            <a href="media.html">
+                            <img src="https://image.freepik.com/free-icon/ios-7-interface-symbol-switch_318-33671.jpg" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Tecnicas de Amostragem</a></figcaption>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="http://sabotage.tv/imgs/variable.png" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Variavel Quantitativa</a></figcaption>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://image.freepik.com/free-icon/paper-list-hand-drawn-symbol_318-51858.jpg" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Medidas de Tendencia Central</a></figcaption>
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://image.flaticon.com/icons/svg/60/60473.svg" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Medidas de Dispersão</a></figcaption>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/62947-200.png" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Distribuição Normal</a></figcaption>
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://www.iconexperience.com/_img/i_collection_png/512x512/plain/server_cloud.png" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Distribuição Binomial</a></figcaption>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://cdn1.iconfinder.com/data/icons/design-7/96/Vector-5-512.png" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Distribuição de Poisson</a></figcaption>
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="http://downloadicons.net/sites/default/files/balance-icon-63446.png" width="100px" height="100px" />
+                            </a>
+                            <figcaption><a href>Distribuição Uniforme</a></figcaption>
+                        </td>
+                    </tr>                   
+                    
+
+
+                        
+        </div>
+        
+    </body>
+</html>

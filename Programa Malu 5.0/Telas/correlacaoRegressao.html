@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Correlação e Regressão</title>
+	<script src="js\charts\src\quantitativa-discreta.js"></script>
+    <script>
+        function abrir(URL) {
+            window.open(URL, "", "top=40, left=40, width=800, height=500,scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no" );
+        }
+        function potencia(base, exp){
+				
+				if(exp == 0){
+					return 1;
+				}
+				else if(exp == 1){
+					return base;
+				}
+				else{
+					return base * potencia(base, exp - 1);
+				}
+			}
+
+
+        var elementos = new Array();
+        var elementosfi = new Array();
+
+        function executarFuncoes(){
+
+            var elementosString = document.getElementById('elementosString').value;
+            var elementosString2 = document.getElementById('elementosString2').value;
+            var qtdElementos;
+            var rol;
+            var soma = 0;
+            var media;
+            var i, j, maior = -99999999, modal, cont = 1, num = 0, k = 0;    
+            var mediana, par1, par2, impar, result1 = 0; 
+            var elementosString = document.getElementById('elementosString').value;
+            var radios = document.getElementsByName('opcao');
+            var rol;
+            var soma = 0, somaVariancia = 0, divVariancia = 0, soma1 = 0, soma2 = 0, soma3 = 0, soma4 = 0;
+            var result = 0;
+            var i, j, maior = -99999999, modal, cont = 1, num = 0, k = 0;    
+            var mediana, desvioPadrao, cv, result1 = 0; 
+            var tabelaDados = document.createElement("table");
+            var cabecalho = document.createElement("thead");
+            var corpo = document.createElement("tbody");
+            var numTab = new Array();
+            var contNum = new Array();
+            var contNum2 = new Array();
+            var freq = new Array();
+            var freqSimples = new Array();
+            var freqSimples2 = new Array();
+            var freqAcul = new Array();
+            var pearson = 0, regressao = 0;
+
+            elementos = elementosString.split(',');
+            elementosfi = elementosString2.split(',');
+
+            for(i = 0; i < elementos.length; i++){
+                soma += parseFloat(elementos[i]) * parseFloat(elementosfi[i]);
+                numTab[i] = parseFloat(elementos[i]) * parseFloat(elementosfi[i])
+            }
+            for(i = 0; i < elementos.length; i++){
+                soma1 += parseFloat(elementos[i]);
+            }
+            for(i = 0; i < elementos.length; i++){
+                soma2 += parseFloat(elementosfi[i]);
+            }
+            for(i = 0; i < elementos.length; i++){
+                soma3 += Math.pow(parseFloat(elementos[i]), 2);
+                contNum[i] = Math.pow(parseFloat(elementos[i]), 2);
+            }
+            for(i = 0; i < elementos.length; i++){
+                soma4 += Math.pow(parseFloat(elementosfi[i]), 2);
+                contNum2[i] = Math.pow(parseFloat(elementosfi[i]), 2);
+            }
+			
+            pearson = (((elementos.length * soma) - (soma1 * soma2)) / Math.sqrt((elementos.length * soma3 - Math.pow(soma1, 2)) * (elementos.length * soma4 - Math.pow(soma2, 2) ))) * 100;
+            document.getElementById('pearson').setAttribute("value", pearson + "%");
+            regressao = ((elementos.length * soma) - (soma1 * soma2)) / ((elementos.length * soma3) - Math.pow(soma1, 2));
+            document.getElementById('regressao').setAttribute("value", regressao);
+            var b = (soma2 / elementos.length) - (regressao * (soma1 / elementos.length));
+            document.getElementById('b').setAttribute("value", b);
+			
+            
+
+        //elementos inicias para criação da tabela
+        var corpo = document.getElementsByTagName("body")[0];
+        var tabela = document.createElement("table");
+        var corpo_tabela = document.createElement("tbody");
+        
+        //criação do titulos da tabela
+        var tab = document.createElement("tr");
+        var celula = document.createElement("td");
+        var texto_celula = document.createTextNode("Exi");
+        celula.appendChild(texto_celula);
+        tab.appendChild(celula);
+        corpo_tabela.appendChild(tab);
+ 
+        var celula = document.createElement("td");
+        var texto_celula = document.createTextNode("Eyi");
+        celula.appendChild(texto_celula);
+        tab.appendChild(celula);
+        corpo_tabela.appendChild(tab);
+
+        var celula = document.createElement("td");
+        var texto_celula = document.createTextNode("xi * yi");
+        celula.appendChild(texto_celula);
+        tab.appendChild(celula);
+        corpo_tabela.appendChild(tab);
+
+        var celula = document.createElement("td");
+        var texto_celula = document.createTextNode("x²");
+        celula.appendChild(texto_celula);
+        tab.appendChild(celula);
+        corpo_tabela.appendChild(tab);
+
+        var celula = document.createElement("td");
+        var texto_celula = document.createTextNode("YI²");
+        celula.appendChild(texto_celula);
+        tab.appendChild(celula);
+        corpo_tabela.appendChild(tab);
+
+
+        for(i = 0; i < numTab.length; i++) {   
+            //ARMAZENANDO NUMEROS QUE APARECEREM NO VETOR
+            var tab = document.createElement("tr");
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(elementos[i]);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);
+            
+
+            //ARMAZENANDO A FREQUENCIA DOS NUMEROS NO VETOR
+
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(elementosfi[i]);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);      
+
+            //FREQUENCIA SIMPLES ACUMULADA                     
+            
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(numTab[i]);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);           
+
+            //FREQUENCIA SIMPLES %                     
+            
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(contNum[i]);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);             
+
+            //FREQUENCIA  ACUMULADA %                    
+            
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(contNum2[i]);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);        
+
+        }
+            //PULANDO 1º BLOCO
+            var tab = document.createElement("tr");
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(soma1);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);      
+
+      
+         //IMPRIMINDO A SOMA DAS FREQUENCIAS 
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(soma2);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);
+       
+            //PULANDO  BLOCO 
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(soma);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);
+
+         //PULANDO  BLOCO            
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(soma3);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab);             
+
+        //TOTAL MEDIA          
+            var celula = document.createElement("td");
+            var texto_celula = document.createTextNode(soma4);
+            celula.appendChild(texto_celula);
+            tab.appendChild(celula);
+            corpo_tabela.appendChild(tab); 
+    
+        
+        //incluindo corpo da tabela
+        tabela.appendChild(corpo_tabela);
+        // itens dentro da tabela
+        corpo.appendChild(tabela);
+        // atributos da tabela 2
+        tabela.setAttribute("border", "1");
+        tabela.setAttribute("bgcolor", "WHITE");
+        tabela.setAttribute("align", "CENTER");
+        tabela.setAttribute("width", "50%");
+        tabela.setAttribute("background-color", "white");
+        tabela.setAttribute("border-radius", "10px");
+        		
+        }
+
+
+            
+    </script>
+	<script src="js\charts\src\quantitativa-discreta.js"></script>
+</head>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid black;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+    figcaption{
+        font-family: Calibri;
+    }
+    .recolherDados{
+        width:650px;
+        height:25px;
+        text-align: center;
+    }
+
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Correlação e Regressão</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href>Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <figcaption style="padding-bottom: 10px;">Digite os elementos (use "," para separar os elementos e "." para casas decimais)</figcaption>
+                <input type="text" class="recolherDados" id="elementosString">
+                <br></br>
+                <figcaption style="padding-bottom: 10px;">Digite o 'yi' respectivo dos números acima</figcaption>
+                <input type="text" class="recolherDados" id="elementosString2">
+                <br></br>
+                <input type="button" value="Calcular" onclick="executarFuncoes()" >
+            <center>
+                <br></br>
+                <table width=100% >
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Pearson</figcaption>
+                            <input type="text" id="pearson" style="text-align:center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Regressao</figcaption>
+                            <input type="text" id="regressao" style="text-align:center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Dispersão (B)</figcaption>
+                            <input type="text" id="b" style="text-align:center;" readonly>
+                        </td>
+                    </tr>
+				</table>
+                <br></br>
+                    
+            </center>
+			<center>
+			<div class="limpar">
+                    <center>
+                    <h2><a href>Limpar</a></h2>
+            </div>
+        </div>
+        <br></br>
+        <center>
+        <div class="opcoes">
+        <h2><a href>Tabela Discreta</a></p>
+        </div>
+        <br></br>
+		
+    </body>
+</html>

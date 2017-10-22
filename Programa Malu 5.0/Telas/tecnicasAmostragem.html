@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Técnicas de Amostragem</title>
+    <script>
+        //Declaração de variáveis globais
+			var pop; //População
+			var n; //Tamanho da amostra
+			var tamanhoAmostra; // Função do botão
+			var aleatoria; // Função do botão
+			var sistematica; //Função do botão
+			var estratificadaProporcional; //Função do botão
+			
+			function tamanhoAmostra(){
+				var e; // Margem de erro
+				var No;
+				
+				pop = parseFloat(prompt("Digite o tamanho da populacao")); //Entrada de dados do tamanho da população
+			
+				e = parseFloat(prompt("Digite a margem de erro")); // Entrada de dados da margem de erro
+				
+				No = 1 / ((e / 100)*(e / 100)); // Cálculo da variável 'No'
+				
+				n = (pop * No) / (pop + No); //Cálculo do tamanho da amostra
+				
+				alert ("Tamanho da amostra e aproximadamente: " + Math.round(n)); // Print do tamanho da amostra arredondado
+			
+			}
+		
+			function aleatoria(){
+				var i; //Contador
+				var numAleatorios = new Array(); // Vetor para armazenar os números aleatórios
+				
+				// Loop 'for' para escolher aleatoriamente os numeros de 1 até o tamanho da população, loopando até chegar na quantidade da amostra arredondado
+				for(i = 0; i < Math.round(n); i++){
+					numAleatorios[i] = Math.floor(Math.random(1) * pop); // Função que escolhe os números aleatoriamente de 1 até o tamanho da população
+				}
+				alert("Elementos sorteados: " + numAleatorios);// Print dos números aleatórios
+			}
+		
+			function sistematica(){
+				var sistema, inicial, ultimo; //Sistema // Elemento que iniciará o sistema // Elemento que terminará o sistema 
+				var i; // Contador
+				var numSist = new Array(); // Vetor para armazenar os elementos do sistema
+				
+				sistema = parseInt(Math.round(pop / n)); //Cálculo de quanto em quanto será o sistema
+				
+				inicial = Math.ceil(Math.random()* sistema); // Função aleatória para determinar o elemento inicial do sistema
+				
+				ultimo = (pop - sistema) + inicial; // Cálculo para determinar o último elemento do sistema
+				
+				alert("A cada " + sistema + " elementos, 1 individuo sera pesquisado"); // Print da variável 'sistema'
+				
+				numSist[0] = inicial; //Vetor com nenhum elemento receberá o valor de 'inicial'
+				
+				for(i = 1; i < Math.round(n); i++){ // Loop para determinar os elementos sistematicos de 1 até o tamanho da amostra
+					numSist[i] = inicial + (i * sistema); // Cálculo e armazenamento dos elementos sistemáticos no vetor
+					if(numSist[i] == ultimo){ //Se o vetor chegar ao último elemento, o loop é finalizado
+						break; //Parada
+					}
+					else if(numSist[i] > ultimo){ // Senão, se o vetor ultrapassar a variável 'ultimo', é retirado o elemento que ultrapassou e decrementa o contador
+						numSist.pop(); // Conceito de pilha, para retirar o último elemento que ultrapassou
+						i--; // Decrementação do contador
+						break; // Parada
+					}
+				}
+				alert("Elementos sistematicos: " + numSist); //Print dos elementos sistemáticos
+			}
+			
+			function estratificadaProporcional(){
+				var grupo = new Array(); //Vetor do nome dos grupos
+				var qtd = new Array(); //Vetor da quantidade dos grupos informados
+				var eq = new Array(); //Vetor dos valores ja proporcionais dos grupos
+				var i,j, proporcao = (Math.round(n) / pop) * 100, resp; //Contador //Calculo da proporcao //variável de condicao
+				
+				
+				resp = parseInt(prompt("Quantos grupos deseja?"));//Usuario informa a quanitdade de grupos
+				
+				for(i = 0; i < resp; i++){ // for das quantidades de grupo informadas pelo usuario
+						grupo[i] = prompt("Informe o nome do grupo: ");//Usuario informa o nome dos grupos
+						qtd[i] = parseFloat(prompt("Informe a quantidade do grupo " + grupo[i] + " :"));//Usuario informa a quantidade de individuos de cada grupo
+				}
+				for(i = 0;i < resp ;i++){ //for para calculo de cada um dos grupos
+					eq[i] = (qtd[i] * proporcao) / 100; //calculo da proporcao de cada grupo
+				}
+				
+				alert("Grupos " + grupo +": " + eq);//print do resultado do calculo
+			}
+    </script>
+</head>
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    figcaption{
+        font-family: Calibri;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Técnicas de Amostragem</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href>Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://cdn4.iconfinder.com/data/icons/defaulticon/icons/png/256x256/media-shuffle.png" width="100px" height="100px" />
+                            </a>
+                            <br></br>
+                            <input type="button" value="Aleatoria simples" onclick="aleatoria()">
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://cdn4.iconfinder.com/data/icons/defaulticon/icons/png/256x256/media-repeat.png" width="100px" height="100px" />
+                            </a>
+                            <br></br>
+                            <input type="button" value="Tamanho da amostra" onclick="tamanhoAmostra()">
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/109928-200.png" width="100px" height="100px" />
+                            </a>
+                            <br></br>
+                            <input type="button" value="Estratificada Proporcional" onclick="estratificadaProporcional()">
+                        </td>
+                        <td>
+                            <center>
+                            <a href>
+                            <img src="https://maxcdn.icons8.com/Share/icon/Programming//system_information1600.png" width="100px" height="100px" />
+                            </a>
+                            <br></br>
+                            <input type="button" value="Sistematica" onclick="sistematica()">
+                        </td>
+                    </tr>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script>
+			function crescente(a, b){
+				return a - b;
+			}
+			function coletaDados(){
+
+				var tamPopulacao, i;
+				var populacao = new Array()
+
+				tamPopulacao = prompt("Digite o tamanho da populaçao");
+
+				for(i = 0; i < tamPopulacao; i++){
+					populacao[i] = prompt("Valores da população");
+				}
+
+				document.write(populacao.sort(crescente));
+
+
+			}
+		</script>
+	</head>
+	<body>
+	<div>
+		<input type="button" value="Colete os Dados" onclick="coletaDados()">
+	</div>
+
+	</body>
+</html>

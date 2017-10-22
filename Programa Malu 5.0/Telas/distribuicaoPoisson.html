@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Distribuição Poisson</title>
+    <script>
+        function abrir(URL) {
+            window.open(URL, "", "top=40, left=40, width=800, height=500,scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no" );
+        }
+        function potencia(base, exp){
+				
+				if(exp == 0){
+					return 1;
+				}
+				else if(exp == 1){
+					return base;
+				}
+				else{
+					return base * potencia(base, exp - 1);
+				}
+		}
+        function fatorial(num){
+            if(num < 0){
+                return -1;
+            }
+            else if(num == 0){
+                return 1;
+            }
+            var tmp = num;
+            while(num-- > 2){
+                tmp *= num;
+            }
+            return tmp;
+        }
+        
+        var elementos = new Array();
+
+        function executarFuncoes(){
+
+            var lambda = document.getElementById('lambda').value; 
+            var ocorrencias = parseFloat(document.getElementById('ocorrencias').value);
+            var lambdaPeriodo, potenciaResult;
+            var maisOcorrencias = parseFloat(document.getElementById('maisOcorrencias').value);
+            var potencia1, potencia2;
+            var periodos = document.getElementById('periodos').value;
+            var e = 2.71828;
+            var probabilidade = parseFloat(document.getElementById('probabilidade').value);
+            var soma = 0;
+
+            if(periodos == ""){
+                periodos = 1;
+            }
+            if(maisOcorrencias >= 1){
+                for(ocorrencias = 0; ocorrencias <= maisOcorrencias; ocorrencias++){
+                    lambdaPeriodo = parseFloat(lambda) / parseFloat(periodos);
+
+                    potenciaResult = parseFloat(lambdaPeriodo * -1);
+
+                    potencia1 = Math.pow(lambdaPeriodo, ocorrencias);
+                    potencia2 = Math.pow(e, potenciaResult);
+
+                    probabilidade = parseFloat(((potencia1 * potencia2) / fatorial(ocorrencias)) * 100);
+                    soma += probabilidade;
+                }
+                    document.getElementById('probabilidade').setAttribute("value", soma + "%");
+            }
+            else{
+                lambdaPeriodo = parseFloat(lambda) / parseFloat(periodos);
+
+                potenciaResult = parseFloat(lambdaPeriodo * -1);
+
+                potencia1 = Math.pow(lambdaPeriodo, ocorrencias);
+                potencia2 = Math.pow(e, potenciaResult);
+
+                probabilidade = parseFloat(((potencia1 * potencia2) / fatorial(ocorrencias)) * 100);
+
+                document.getElementById('probabilidade').setAttribute("value", probabilidade + "%");
+            }
+            
+        }
+
+    </script>
+</head>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid black;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+    figcaption{
+        font-family: Calibri;
+    }
+    .recolherDados{
+        width:650px;
+        height:25px;
+        text-align: center;
+    }
+    button{
+        border-radius: 5px;
+        height: 30px;
+    }
+    .recolherDados{
+        width:650px;
+        height:25px;
+        text-align: center;
+    }
+
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Distribuição Poisson</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="javascript:abrir('explicacaoDistribuicaoPoisson.html');">Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <button onclick="window.open('tabelaDistribuicao.html','Tabela Distribuição','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1000,height=1000'); ">Consultar Tabela</button>
+                <br></br>
+                <table width=100% >
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Lambda</figcaption>
+                            <input type="text" id="lambda" style="text-align:center;" >
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Período (se for mais que uma unidade)</figcaption>
+                            <input type="text" id="periodos" style="text-align:center;" >
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Ocorrências (X)</figcaption>
+                            <input type="text" id="ocorrencias" style="text-align:center;" >
+                        </td>
+                    </tr>
+				</table>
+                <br></br>
+                <center>
+                <table width="100%">
+                    <tr>
+                        <td> 
+                            <center>  
+                            <figcaption>Mais que uma ocorrência</figcaption>
+                            <input type="text" id="maisOcorrencias" style="text-align: center;" >
+                            <br></br>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Probabilidade</figcaption>
+                            <input type="text" id="probabilidade" style="text-align: center;" readonly>
+                            <br></br>
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" value="Calcular" onclick="executarFuncoes()">
+                <br></br>
+            </center>
+			<center>
+			<div class="limpar">
+                    <center>
+                    <h2><a href>Limpar</a></h2>
+            </div>
+        </div>
+        
+    </body>
+</html>

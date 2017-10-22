@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<title>Programa de Estatistica</title>
+
+		<script>
+			function tutorial(){
+				var nomeUsuario;
+				nomeUsuario = prompt("Digite seu nome.")
+				if(nomeUsuario == ""){
+					nomeUsuario = "seja você quem for! Haha";
+				}
+				alert("Bem vindo ao Programa de Estatistica.");
+				alert("Caso tenha clicado erroneamente no tutorial, clique na 'checkbox' abaixo.");
+				alert("Você escolheu fazer o Tutorial Rapido");
+				alert("Abaixo você pode clicar nas imagens e selecionar o tipo de calculo desejado");
+				alert("Ao digitar números decimais use '.' ao invés de ','");
+				alert("Dê dois cliques no 'Pericles' para esconder as opções");
+				alert("Obrigado por usar nosso sistema, " + nomeUsuario + "!");
+			}
+			function OsCaraQueCriaramEssaBagaça(){
+				alert("Felipe de Souza Fontelas \nLucas Lauro Costa \nPaulo Cesar Cintra Oliveira");
+			}
+			function media(){
+				
+				var nota1 = parseFloat(document.getElementById('nota1').value);
+				var nota2 = parseFloat(document.getElementById('nota2').value);
+				var media = 0;
+				
+				media = parseFloat((nota1 + nota2) / 2);
+				
+				document.getElementById('media').setAttribute("value", media);
+				
+			}
+			function mostra() {
+				document.getElementById('minhaDiv').style.display = 'block';
+			}
+			function esconde() {
+				document.getElementById('minhaDiv').style.display = 'none';
+			}
+			function mostra2() {
+				document.getElementById('minhaDiv2').style.display = 'block';
+			}
+			function esconde2() {
+				document.getElementById('minhaDiv2').style.display = 'none';
+			}
+		</script>
+		<style>
+			h1{
+				font-family: Calisto MT;
+				font-size: 70px;
+				text-shadow: gray 1px 1px 2px;
+			}
+			a:link{ 
+				text-decoration:none; 
+				font-family: Calisto MT;
+				font-size: 20px;
+				text-shadow: gray 1px 1px 2px;
+				text-align: center;
+				vertical-align:bottom;			
+			}
+			table{
+				text-align: center;
+			}
+			img{border-radius: 10px;}
+		</style>
+	</head>
+	<body bgcolor="#F5F5F5">
+		<center>
+			<h1>Estatistica Aplicada</h1>
+		</center>
+		<div class="menu">
+			<center>
+			
+			<table width="50%">
+				<td><a href onclick="tutorial()">Tutorial Rápido</a><img src="https://image.freepik.com/free-icon/question-mark-on-a-circular-black-background_318-41916.jpg" title="Use esse link para receber um rápido apredizado de como usar o sistema" hspace="10px" width="10px" height="10px" /></</td>
+				
+				<td><a href onclick="OsCaraQueCriaramEssaBagaça()">Desenvolvedores</a></td>
+			</table>
+			</center>
+			
+		</div>
+		<br></br>
+		<center>
+		<img src="https://www.periclesoficial.com.br/wp-content/uploads/2015/11/pericles33.jpg" style="float: right" width="400px" height="250px" onclick="mostra()" ondblclick="esconde()"/>
+		<div id="minhaDiv">
+			<table width="45%">
+				<td>
+					<a href>Opção 1</a>
+				</td>
+				<td>
+					<a href>Opção 2</a>
+				</td>			
+				<td>
+					<a href>Opção 3</a>
+				</td>	
+				<td>
+					<a href>Opção 4</a>
+				</td>
+			</table>
+		</center>
+		</div>
+		<img src="https://www.periclesoficial.com.br/wp-content/uploads/2015/11/pericles33.jpg" style="float: left;" width="400px" height="250px" onclick="mostra2()" ondblclick="esconde2()"/>
+		<div id="minhaDiv2">
+			<table width="45%">
+				<td>
+					<a href>Opção 1</a>
+				</td>
+				<td>
+					<a href>Opção 2</a>
+				</td>			
+				<td>
+					<a href>Opção 3</a>
+				</td>	
+				<td>
+					<a href>Opção 4</a>
+				</td>
+			</table>
+		</center>
+		</div>
+	</body>
+</html>

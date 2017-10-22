@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medidas de Dispersão</title>
+    <script>
+        function abrir(URL) {
+            window.open(URL, "", "top=40, left=40, width=800, height=500,scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no" );
+        }
+        function potencia(base, exp){
+				
+				if(exp == 0){
+					return 1;
+				}
+				else if(exp == 1){
+					return base;
+				}
+				else{
+					return base * potencia(base, exp - 1);
+				}
+			}
+        function calcularValores(){
+
+            var elementosString = document.getElementById('elementosString').value;
+            var radios = document.getElementsByName('opcao');
+            var rol;
+            var soma = 0, somaVariancia = 0, divVariancia;
+            var result;
+            var i, j, maior = -99999999, modal, cont = 1, num = 0, k = 0;    
+            var mediana, desvioPadrao, cv, result1 = 0; 
+
+            elementos = elementosString.split(',');
+
+            for(i = 0; i < elementos.length; i++){
+                soma += parseFloat(elementos[i]);
+            }
+			
+			elementos.sort(function(a, b){return a-b});
+
+            rol = elementos
+            document.getElementById('rol').setAttribute("value", rol);
+
+            media = soma / elementos.length;
+
+            if(radios[0].checked){
+                for(i = 0; i < elementos.length; i++){
+                    divVariancia = elementos[i] - media;
+                    somaVariancia += potencia(divVariancia, 2);
+                }
+                
+                    divVariancia = 0;
+                    divVariancia = parseFloat(somaVariancia / (elementos.length));
+
+                    document.getElementById('divVariancia').setAttribute("value", divVariancia);
+            }
+
+            if(radios[1].checked){
+                    for(i = 0; i < elementos.length; i++){
+                        divVariancia = elementos[i] - media;
+                        somaVariancia += potencia(divVariancia, 2);
+                    }
+
+                    divVariancia = 0;
+                    divVariancia = parseFloat(somaVariancia / (elementos.length - 1));
+
+                    document.getElementById('divVariancia').setAttribute("value", divVariancia);
+            }
+
+
+            desvioPadrao = Math.sqrt(divVariancia);
+
+            document.getElementById('desvioPadrao').setAttribute("value", desvioPadrao);
+
+            cv = (desvioPadrao / media) * 100 + "%";
+
+            document.getElementById('cv').setAttribute("value", cv);
+
+        }
+    </script>
+</head>
+    <style>
+    table{
+        border-spacing: 3px;  
+        border-top: 10px;     
+    }
+    .opcoes{
+        border-radius: 10px;
+        width: 700px;
+        background-color: white;
+        box-shadow: 3px 3px 3px 3px #888888;
+        padding-top: 10px;
+        padding-bottom: 5px;
+    }
+    .estatisticaAplicada{
+        font-family: Calibri;
+        font-size: 70px;
+    }
+    .desenvolvedores{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .desenvolvedores:hover{
+        background-color: #5FB5F7;
+    }
+    .home{
+        border-radius: 5px;
+        width: 300px;
+        background-color: grey;
+    }
+    .home:hover{
+        background-color: #5FB5F7;
+    }
+    a:link{
+        text-decoration: none;
+    }
+    a:hover{
+        color:antiquewhite;
+    }
+    a{
+        font-family: calibri;
+    }
+    img:hover{
+        height: 150px;
+        width: 150px;
+    }
+    img{
+        transition: 1s;
+        border-radius: 5px;
+    }
+    input{
+        border-radius: 5px;
+        height: 30px;
+    }
+    figcaption{
+        font-family: Calibri;
+    }
+    .recolherDados{
+        width:650px;
+        height:25px;
+        text-align: center;
+    }
+
+    </style>
+    <body background="https://www.brewsterwallcovering.com/data/default/images/catalog/original/412-56650.jpg">
+    <body>
+        <center>
+        <h1 class="estatisticaAplicada">Medidas de Dispersão</h1>
+        <table>
+            <tr>
+                <td>
+                <div class="home">
+                    <center>
+                    <h2><a href="index.html">Home</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href="desenvolvedores.html">Desenvolvedores</a></h2>
+                </div>
+                </td>
+                <td>
+                <div class="desenvolvedores">
+                    <center>
+                    <h2><a href>Ajuda</a></h2>
+                </div>
+                </td>
+            </tr>
+        </table>
+            <div class="opcoes">
+            <center>
+                <figcaption style="padding-bottom: 10px;">Digite os elementos (use "," para separar os elementos e "." para casas decimais)</figcaption>
+                <input type="text" class="recolherDados" id="elementosString">
+                <br></br>
+                <center>
+                <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>População</figcaption>
+                            <input type="radio" name="opcao" value="0"  readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Amostra</figcaption>
+                            <input type="radio" name="opcao" value="1" readonly>
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
+                <input type="button" value="Calcular" onclick="calcularValores()" >
+                <br></br>
+            <center>
+                <h2 style="font-family: Calibri">ROL</h2>
+                <input type="text" class="recolherDados" id="rol" readonly>
+                <br></br>
+            <center>
+                <table width=100%>
+                    <tr>
+                        <td>
+                            <center>
+                            <figcaption>Variancia</figcaption>
+                            <input type="text" id="divVariancia" style="text-align: center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>Desvio Padrão (DP)</figcaption>
+                            <input type="text" id="desvioPadrao" style="text-align: center;" readonly>
+                        </td>
+                        <td>
+                            <center>
+                            <figcaption>CV</figcaption>
+                            <input type="text" id="cv" style="text-align: center;" readonly>
+                        </td>
+                    </tr>
+                </table>
+                </center>
+                <center>
+			        <div class="limpar">
+                        <center>
+                        <h2><a href>Limpar</a></h2>
+                    </div>
+        </div>
+    </body>
+</html>

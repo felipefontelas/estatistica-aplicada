@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<script>
+			function media(){
+				
+				var nota1 = parseFloat(document.getElementById('nota1').value);
+				var nota2 = parseFloat(document.getElementById('nota2').value);
+				var media = 0;
+				
+				media = parseFloat((nota1 + nota2) / 2);
+				
+				document.getElementById('media').setAttribute("value", media);
+				
+			}
+			function Mudarestado(el) {
+				var display = document.getElementById(el).style.display;
+				if(display == "none")
+					document.getElementById(el).style.display = 'block';
+				else
+					document.getElementById(el).style.display = 'none';
+    }
+		</script>
+	</head>
+	<body>
+		<img src="https://www.periclesoficial.com.br/wp-content/uploads/2015/11/pericles33.jpg" width="200px" height="150px" onmouseover="Mudarestado('minhaDiv')" />
+		<div id="minhaDiv">
+			<p>Use "." ao inves de "," para separar casas decimais</p>
+			<input type="text" id='nota1' value="">
+			<br></br>
+			<input type="text" id='nota2' value="">
+			<br></br>
+			<input TYPE="button" NAME="calc" value="Calcular" onclick="media()" >
+			<input type="text" id="media" style="text-align:center;" readonly>
+		</div>
+	</body>
+</html>
+
